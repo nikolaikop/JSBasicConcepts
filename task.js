@@ -22,37 +22,47 @@ function solveEquation(a, b, c) {
 
 function calculateTotalMortgage(percent, contribution, amount, date) {
   'use strict';
-  let totalAmount;
+  //let totalAmount;
+  //console.log(isNaN(totalAmount))
   // код для задачи №2 писать здесь
   let P = percent/12/100 // 1/12 процентной ставки (от 0 до 1)
   let S = amount-contribution // Тело кредита = сумма кредита минус первоначальный взнос
+  console.log(isNaN(P))
+  console.log(isNaN(S))
+  console.log(isNaN(percent))
+  console.log(isNaN(contribution))
+  console.log(isNaN(amount))
 
   function monthDiff(futureDate) {
     var months;
   
     let presentDate = new Date()
     let presentMonth = presentDate.getMonth()
-    let presentYear = presentDate.getFullYear()  
+    let presentYear = presentDate.getFullYear()
+    console.log(isNaN(presentMonth))
+    console.log(isNaN(presentYear))
   
     let endOfLoanDate = futureDate
-    let endOfLoanYear = parseInt(endOfLoanDate.slice(-4))
-    let endOfLoanMonth = parseInt(endOfLoanDate.slice(0,2))
+    let endOfLoanYear = parseInt(endOfLoanDate.toString().slice(-4))
+    let endOfLoanMonth = parseInt(endOfLoanDate.toString().slice(0,2))
+    console.log(isNaN(endOfLoanYear))
+    console.log(isNaN(endOfLoanMonth))
   
     months = (endOfLoanYear - presentYear) * 12;
     months -= presentMonth + 1;
     months += endOfLoanMonth;
-
+    console.log(isNaN(months))
     return months <= 0 ? 0 : months;
+  
   }  
 
   let monthsAmount = monthDiff(date)
   let monthlyPayment = S*(P+(P/(Math.pow((1+P),monthsAmount) - 1)))
-  totalAmount = monthsAmount*monthlyPayment
+  let totalAmount = Number((monthsAmount*monthlyPayment).toFixed(2))
 
-  console.log(totalAmount.toFixed(2))
+  console.log(totalAmount)
+  console.log(isNaN(totalAmount))
   return totalAmount;
 }
 
-calculateTotalMortgage(10, 0, 10000, '02/01/2025')
-
-
+calculateTotalMortgage(15, 0, 10000, '02/01/2025')
